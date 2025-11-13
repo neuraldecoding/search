@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Search URL Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="page-title">Academic Search URL Generator</h1>
+            <p class="page-subtitle">Generate optimized search URLs for IEEE Xplore and Scopus databases</p>
+        </header>
+
+        <!-- Main Form -->
+        <main class="main-content">
+            <form class="search-form" id="searchForm">
+                <!-- Database Selection -->
+                <div class="form-section">
+                    <label class="section-label">Database</label>
+                    <div class="tab-group">
+                        <button type="button" class="tab-btn active" data-database="ieee">IEEE Xplore</button>
+                        <button type="button" class="tab-btn" data-database="scopus">Scopus</button>
+                    </div>
+                </div>
+
+                <!-- Search Terms -->
+                <div class="form-section">
+                    <label class="section-label">Search Terms</label>
+                    <div class="term-groups" id="termGroups">
+                        <!-- Term groups will be dynamically added here -->
+                    </div>
+                    <button type="button" class="add-term-btn" id="addTermGroup">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Term Group
+                    </button>
+                </div>
+
+                <!-- Year Range -->
+                <div class="form-section">
+                    <label class="section-label">Publication Year Range</label>
+                    <div class="year-range">
+                        <div class="year-inputs">
+                            <div class="year-input-group">
+                                <label for="startYear">From</label>
+                                <input type="number" id="startYear" name="startYear" value="2020" min="1900" max="2030" class="year-input">
+                            </div>
+                            <div class="year-input-group">
+                                <label for="endYear">To</label>
+                                <input type="number" id="endYear" name="endYear" value="2024" min="1900" max="2030" class="year-input">
+                            </div>
+                        </div>
+                        <div class="year-slider">
+                            <input type="range" id="startYearSlider" min="1900" max="2030" value="2020" class="slider">
+                            <input type="range" id="endYearSlider" min="1900" max="2030" value="2024" class="slider">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Options -->
+                <div class="form-section">
+                    <label class="section-label">Advanced Options</label>
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label for="searchField">Search Field</label>
+                            <select id="searchField" name="searchField" class="select-input">
+                                <option value="All Metadata">All Metadata</option>
+                                <option value="Title">Title</option>
+                                <option value="Abstract">Abstract</option>
+                                <option value="Authors">Authors</option>
+                                <option value="Keywords">Keywords</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="resultsPerPage">Results per Page</label>
+                            <select id="resultsPerPage" name="resultsPerPage" class="select-input">
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated URL Preview -->
+                <div class="form-section">
+                    <label class="section-label">Generated URL</label>
+                    <div class="url-preview-container">
+                        <div class="url-preview" id="urlPreview">
+                            <code class="url-text" id="urlText">Your generated URL will appear here...</code>
+                        </div>
+                        <button type="button" class="copy-btn" id="copyBtn" title="Copy URL to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="m5 15 4-4 4 4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="url-actions">
+                        <button type="button" class="action-btn primary" id="openUrlBtn">Open in New Tab</button>
+                        <button type="button" class="action-btn secondary" id="clearFormBtn">Clear Form</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notification" id="notification">
+        <span class="notification-text" id="notificationText"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
